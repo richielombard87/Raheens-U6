@@ -3,514 +3,684 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raheens Under Six GAA Coaching App</title>
+    <title>Raheens GAA Boys U6 Coaching App</title>
     <style>
         :root {
-            --primary: #003399;       /* Raheens Royal Blue */
-            --secondary: #ffcc00;     /* Raheens Gold */
-            --dark: #1a1a2e;
-            --light: #f0f4f8;
-            --card-bg: #ffffff;
-            --danger: #d9534f;
-            --accent-blue: #e6f0fa;
+            --raheens-yellow: #FFD700;
+            --raheens-blue: #003399;
+            --raheens-light-blue: #e6f0ff;
+            --raheens-dark-yellow: #e6c200;
+            --pitch-green: #2e7d32;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light);
-            color: var(--dark);
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f4f6f9; color: #333; }
 
+        /* Banner & Header */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem;
+            background: linear-gradient(135deg, var(--raheens-blue) 0%, #001f5c 100%);
+            color: var(--raheens-yellow);
+            padding: 15px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            border-bottom: 5px solid var(--secondary);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border-bottom: 4px solid var(--raheens-yellow);
         }
+        .header-brand { display: flex; align-items: center; gap: 15px; }
+        .header-brand img { height: 55px; width: auto; background: white; padding: 3px; border-radius: 50%; border: 2px solid var(--raheens-yellow); }
+        .header-brand h1 { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .header-logo {
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-            background: white;
-            border-radius: 50%;
-            padding: 3px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .header-text {
-            text-align: left;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        header p {
-            margin: 2px 0 0 0;
-            font-size: 0.8rem;
-            color: var(--secondary);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav {
-            display: flex;
-            background: #ffffff;
-            border-bottom: 2px solid #cbd5e1;
-        }
-
+        /* Navigation Tabs */
+        nav { display: flex; background-color: var(--raheens-blue); overflow-x: auto; }
         nav button {
-            flex: 1;
-            padding: 14px 8px;
-            border: none;
-            background: none;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #475569;
-            cursor: pointer;
-            border-bottom: 4px solid transparent;
-            transition: all 0.2s ease;
+            background: none; border: none; outline: none; padding: 12px 20px; color: white;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.3s;
+            border-bottom: 3px solid transparent; white-space: nowrap;
+        }
+        nav button:hover, nav button.active {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--raheens-yellow);
+            border-bottom: 3px solid var(--raheens-yellow);
         }
 
-        nav button.active {
-            border-bottom-color: var(--secondary);
-            color: var(--primary);
-            background-color: var(--accent-blue);
-        }
-
-        .container {
-            padding: 15px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        /* Container & Cards */
+        .container { padding: 20px; max-width: 1100px; margin: 0 auto; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
         .card {
-            background: var(--card-bg);
-            padding: 16px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
+            background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-top: 4px solid var(--raheens-blue);
         }
+        .card h2 { color: var(--raheens-blue); font-size: 1.25rem; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 8px; }
 
-        .card h2, .card h3 {
-            margin-top: 0;
-            color: var(--primary);
+        /* Form Controls */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #444; }
+        .form-control, select, input, textarea {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;
         }
+        .form-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .form-row .form-group { flex: 1; min-width: 200px; }
 
+        /* Buttons */
         .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-right: 6px;
-            margin-top: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: background 0.2s ease;
+            display: inline-block; padding: 10px 18px; border: none; border-radius: 5px;
+            font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s; text-align: center;
         }
+        .btn-primary { background: var(--raheens-yellow); color: var(--raheens-blue); }
+        .btn-primary:hover { background: var(--raheens-dark-yellow); }
+        .btn-secondary { background: var(--raheens-blue); color: white; }
+        .btn-secondary:hover { background: #002266; }
+        .btn-danger { background: #d9534f; color: white; }
+        .btn-success { background: #5cb85c; color: white; }
+        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
 
-        .btn:hover {
-            background: #002266;
-        }
-
-        .btn-secondary { 
-            background: var(--secondary); 
-            color: #111827; 
-        }
-
-        .btn-secondary:hover {
-            background: #e6b800;
-        }
-
-        .btn-danger { background: var(--danger); }
-
-        .timer-display {
-            font-size: 3rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 10px 0;
-            color: var(--primary);
-            background: var(--accent-blue);
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid var(--primary);
-            font-family: monospace;
-        }
-
+        /* Session Plan Layout */
         .drill-item {
-            border-left: 6px solid var(--primary);
-            padding-left: 12px;
-            margin-bottom: 12px;
+            background: #fdfdfd; border: 1px solid #e0e0e0; border-left: 5px solid var(--raheens-blue);
+            border-radius: 5px; padding: 15px; margin-bottom: 15px; display: flex; gap: 15px; flex-wrap: wrap;
         }
+        .drill-item.water-break { border-left-color: #00bcd4; background: #e0f7fa; }
+        .drill-item.match { border-left-color: var(--raheens-yellow); background: #fffde7; }
+        .drill-info { flex: 2; min-width: 280px; }
+        .drill-diagram { flex: 1; min-width: 220px; max-width: 320px; background: var(--pitch-green); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; align-items: center; }
+        .drill-diagram svg { width: 100%; height: auto; max-height: 180px; }
 
-        .drill-break {
-            border-left: 6px solid var(--secondary);
-            background-color: #fffbeb;
+        /* Live Timer Banner */
+        .timer-display {
+            background: var(--raheens-blue); color: white; padding: 25px; border-radius: 10px;
+            text-align: center; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+        .timer-clock { font-size: 3.5rem; font-weight: 800; color: var(--raheens-yellow); margin: 10px 0; font-family: monospace; }
+        .timer-controls { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
 
-        .svg-diagram {
-            width: 100%;
-            height: 150px;
-            background: #f0f7ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 6px;
-            margin-top: 10px;
+        /* Calendar Grid */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 15px; }
+        .calendar-day-head { font-weight: bold; text-align: center; padding: 8px; background: #eee; }
+        .calendar-day {
+            min-height: 80px; border: 1px solid #ddd; padding: 5px; background: white; border-radius: 4px;
+            position: relative; font-size: 0.85rem;
         }
+        .calendar-day.has-session { background: var(--raheens-light-blue); border-color: var(--raheens-blue); cursor: pointer; }
+        .calendar-day .day-num { font-weight: bold; margin-bottom: 5px; }
+        .calendar-day .badge { background: var(--raheens-blue); color: var(--raheens-yellow); font-size: 0.7rem; padding: 2px 4px; border-radius: 3px; display: block; margin-top: 2px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 6px 0 16px 0;
-            box-sizing: border-box;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 0.95rem;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.15);
-        }
-
-        .equipment-tag {
-            display: inline-block;
-            background: #e2e8f0;
-            color: #334155;
-            padding: 3px 9px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 5px;
-            margin-top: 4px;
+        /* Printable PDF View */
+        @media print {
+            header, nav, .no-print { display: none !important; }
+            body, .container { background: white; padding: 0; margin: 0; max-width: 100%; }
+            .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Raheens_GAA_logo.png" alt="Raheens GAA Crest" class="header-logo" onerror="this.style.display='none'">
-    <div class="header-text">
-        <h1>Raheens Under Six GAA Coaching App</h1>
-        <p>GAA Football Session Planner & Repository</p>
-    </div>
-</header>
-
-<nav>
-    <button class="active" onclick="switchTab('session')">Active Session</button>
-    <button onclick="switchTab('library')">Drill Library</button>
-    <button onclick="switchTab('history')">History & Log</button>
-</nav>
-
-<div class="container">
-    <div id="session" class="tab-content active">
-        <div class="card">
-            <h2>Session Planner Setup</h2>
-            <label>Expected Attendance (10-20 kids):</label>
-            <input type="number" id="attendance" value="14" min="5" max="30">
-            <button class="btn" onclick="generateSession()">Auto-Generate Session</button>
-            <button class="btn btn-secondary" onclick="sharePlan()">Share Plan</button>
-        </div>
-
-        <div id="timerCard" class="card" style="display:none; text-align:center;">
-            <h3 id="currentDrillTitle" style="margin-bottom:5px;">Drill Title</h3>
-            <div class="timer-display" id="timeRemaining">00:00</div>
-            <button class="btn" id="startBtn" onclick="toggleTimer()">Start</button>
-            <button class="btn btn-secondary" onclick="nextDrill()">Next Activity</button>
-        </div>
-
-        <div id="sessionPlan"></div>
-
-        <div id="logSection" class="card" style="display:none;">
-            <h3>End of Session Log</h3>
-            <label>Actual Attendance Count:</label>
-            <input type="number" id="finalAttendance" value="14">
-            <label>Session Notes (What went well? What needs work?):</label>
-            <textarea id="sessionNotes" rows="3" placeholder="Notes on performance, drills that worked best, or players needing extra support..."></textarea>
-            <button class="btn" onclick="saveSessionLog()">Save Session to History</button>
-        </div>
-    </div>
-
-    <div id="library" class="tab-content">
-        <div class="card">
-            <h3>Add New Drill</h3>
-            <input type="text" id="newTitle" placeholder="Drill Name">
-            <select id="newCategory">
-                <option value="Warm Up">Warm Up</option>
-                <option value="Fun Game">Fun Game</option>
-                <option value="Skill Game">Skill Game</option>
-                <option value="Match">Match</option>
-            </select>
-            <textarea id="newExplainer" placeholder="Setup & Instructions"></textarea>
-            <label>Equipment Needed:</label>
-            <input type="text" id="newEquip" placeholder="e.g., Cones, Balls, Hoops, Poles">
-            <button class="btn" onclick="addDrill()">Add to Library</button>
-        </div>
-        <div id="libraryList"></div>
-    </div>
-
-    <div id="history" class="tab-content">
-        <div class="card">
-            <h3>Completed Sessions Log</h3>
-            <div id="historyList">No saved sessions yet.</div>
-        </div>
-    </div>
-</div>
-
-<script>
-let drillLibrary = JSON.parse(localStorage.getItem('gaa_drills_raheens')) || [
-    { id: 1, name: "Animal Adventure", category: "Warm Up", time: 5, equipment: "Balls", desc: "Kangaroo (hop with ball), Cheetah (run & stop), Snake (roll ball on ground), Flamingo (balance on one leg).", diagram: "grid" },
-    { id: 2, name: "Red Light Green Light", category: "Warm Up", time: 5, equipment: "Cones", desc: "Coach calls Red/Green light. Movers caught moving on red are put back to the start.", diagram: "grid" },
-    { id: 3, name: "Simon Says", category: "Warm Up", time: 5, equipment: "None", desc: "Jog on spot. Call instructions (touch toes, etc.). Increase pace and try to trick with visual clues.", diagram: "grid" },
-    { id: 4, name: "Heads, Shoulders, Knees, Toes", category: "Warm Up", time: 5, equipment: "None", desc: "Jog on spot while calling out body parts for kids to touch. Increase pace gradually.", diagram: "grid" },
-    { id: 5, name: "Basic Skills Free Circle", category: "Warm Up", time: 5, equipment: "Balls, Cones", desc: "Players run around circle following coach instructions to hop, throw/catch, or pickup. Coaches try to gently disrupt.", diagram: "grid" },
-    { id: 6, name: "Around the World & Ball Sense", category: "Warm Up", time: 5, equipment: "Balls", desc: "Players transfer ball around body (legs, knees, head). Roll under foot, bounce sitting down, thigh solo practice.", diagram: "grid" },
-    { id: 7, name: "Catchers v Chasers / Sharks and Fish", category: "Fun Game", time: 6, equipment: "Bibs, Cones", desc: "3-4 chasers/sharks chase runners and grab bibs tucked into shorts as tails. Caught runners turn into chasers.", diagram: "grid" },
-    { id: 8, name: "Cone Relay", category: "Fun Game", time: 6, equipment: "Coloured Cones", desc: "Place coloured cones in a zone. Each player in a coloured team collects their team colour and brings it back.", diagram: "relay" },
-    { id: 9, name: "Chasing Shadows", category: "Fun Game", time: 5, equipment: "None", desc: "Partner work: Players jog around in pairs and copy the person who is leading.", diagram: "grid" },
-    { id: 10, name: "Dog and Bone", category: "Fun Game", time: 6, equipment: "Bibs, Cones", desc: "Groups of 4. One child (dog) tries to get a bib from another, while 2 others hold hands to protect the bone.", diagram: "grid" },
-    { id: 11, name: "Grid Swap", category: "Fun Game", time: 6, equipment: "Balls, Cones", desc: "Kids start in home zones. Collect equal balls from middle. Once empty, rob balls from other team zones.", diagram: "nest" },
-    { id: 12, name: "Obstacle Relay", category: "Fun Game", time: 6, equipment: "Cones, Hurdles", desc: "In groups, kids run through an obstacle course, pick up their colour cone at the end, and relay back.", diagram: "relay" },
-    { id: 13, name: "Pole / Cone Slalom", category: "Skill Game", time: 6, equipment: "Poles, Cones, Balls", desc: "Dribble, run, cone hops, or slalom through poles and obstacles.", diagram: "relay" },
-    { id: 14, name: "Clean Your Garden / Bombsite", category: "Skill Game", time: 6, equipment: "Balls, Cones", desc: "Two teams across a DMZ kick/pass balls into each other's zones. Team with fewest balls in garden wins.", diagram: "dmz" },
-    { id: 15, name: "Skills in Pairs", category: "Skill Game", time: 6, equipment: "Balls", desc: "Handpass, kicking, bounce to each other, sit and roll/throw, back-to-back pass, under legs & overhead.", diagram: "grid" },
-    { id: 16, name: "Accuracy Kick to Square", category: "Skill Game", time: 6, equipment: "Balls, Cones", desc: "Kids line up and aim kicks into target marked square. Coach kicks ball back to player.", diagram: "target" },
-    { id: 17, name: "Beat the Circle", category: "Skill Game", time: 6, equipment: "Balls, Cones", desc: "Players stand in a circle and pass ball around. Another player sprints around circle trying to beat the passes.", diagram: "grid" },
-    { id: 18, name: "Raheens U6 Mini Match", category: "Match", time: 12, equipment: "Balls, Bibs, Poles", desc: "4v4 or 5v5 small games. High touches, rotate roles, use poles for goals.", diagram: "pitch" }
-];
-
-let currentPlan = [];
-let activeDrillIdx = 0;
-let timerInterval = null;
-let secondsLeft = 0;
-let isTimerRunning = false;
-
-function switchTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    event.target.classList.add('active');
-    if(tabId === 'library') renderLibrary();
-    if(tabId === 'history') renderHistory();
-}
-
-function generateSession() {
-    let warmups = drillLibrary.filter(d => d.category === 'Warm Up');
-    let funGames = drillLibrary.filter(d => d.category === 'Fun Game');
-    let skillGames = drillLibrary.filter(d => d.category === 'Skill Game');
-    let matches = drillLibrary.filter(d => d.category === 'Match');
-
-    let w = warmups[Math.floor(Math.random() * warmups.length)] || warmups[0];
-    let f = funGames[Math.floor(Math.random() * funGames.length)] || funGames[0];
-    let s1 = skillGames[Math.floor(Math.random() * skillGames.length)] || skillGames[0];
-    let s2 = skillGames.filter(d => d.id !== s1.id)[0] || s1;
-    let m = matches[0] || { name: "Mini Match", category: "Match", desc: "Small sided games" };
-
-    currentPlan = [
-        { ...w, duration: 8 },
-        { name: "Water Break", category: "Break", duration: 2, desc: "Quick drink and regroup.", equipment: "Water Bottles" },
-        { ...f, duration: 6 },
-        { name: "Water Break", category: "Break", duration: 2, desc: "Quick drink.", equipment: "Water Bottles" },
-        { ...s1, duration: 6 },
-        { ...s2, duration: 6 },
-        { name: "Water Break", category: "Break", duration: 2, desc: "Drink before match setup.", equipment: "Water Bottles" },
-        { ...m, duration: 12 }
-    ];
-
-    renderPlan();
-    document.getElementById('timerCard').style.display = 'block';
-    document.getElementById('logSection').style.display = 'block';
-    loadDrillToTimer(0);
-}
-
-function renderPlan() {
-    let html = '<h3>Raheens U6 Session Schedule</h3>';
-    currentPlan.forEach((item, idx) => {
-        let isBreak = item.category === 'Break';
-        html += `
-            <div class="card drill-item ${isBreak ? 'drill-break' : ''}">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <strong>${idx + 1}. ${item.name} (${item.duration} mins)</strong>
-                    ${!isBreak ? `<button class="btn btn-secondary" style="padding:3px 8px; font-size:0.75rem;" onclick="swapDrill(${idx})">Swap</button>` : ''}
-                </div>
-                <p style="font-size:0.88rem; margin:6px 0; color:#334155;">${item.desc}</p>
-                <div>${(item.equipment || '').split(',').map(e => `<span class="equipment-tag">${e.trim()}</span>`).join('')}</div>
-                ${getDiagramSVG(item.diagram)}
+    <!-- Header Banner -->
+    <header>
+        <div class="header-brand">
+            <!-- Raheens GAA Crest SVG Placeholder / Image -->
+            <svg width="50" height="50" viewBox="0 0 100 100">
+                <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" fill="#FFD700" stroke="#003399" stroke-width="4"/>
+                <path d="M50 10 L85 28 L85 72 L50 90 L15 72 L15 28 Z" fill="#003399"/>
+                <circle cx="50" cy="50" r="25" fill="#FFD700"/>
+                <text x="50" y="55" font-size="22" font-weight="bold" fill="#003399" text-anchor="middle">R</text>
+            </svg>
+            <div>
+                <h1>Raheens GAA</h1>
+                <small style="color:white; font-weight: normal;">Boys Under 6 Coaching Portal</small>
             </div>
-        `;
-    });
-    document.getElementById('sessionPlan').innerHTML = html;
-}
+        </div>
+    </header>
 
-function swapDrill(idx) {
-    let cat = currentPlan[idx].category;
-    if (cat === 'Break') return;
-    let options = drillLibrary.filter(d => d.category === cat);
-    let next = options[Math.floor(Math.random() * options.length)];
-    currentPlan[idx] = { ...next, duration: currentPlan[idx].duration };
-    renderPlan();
-}
+    <!-- App Navigation -->
+    <nav class="no-print">
+        <button class="active" onclick="showTab('planner')">Session Planner</button>
+        <button onclick="showTab('timer')">Live Session Timer</button>
+        <button onclick="showTab('calendar')">Calendar & History</button>
+        <button onclick="showTab('repository')">Drill & Equipment Bank</button>
+    </nav>
 
-function loadDrillToTimer(idx) {
-    activeDrillIdx = idx;
-    let drill = currentPlan[idx];
-    document.getElementById('currentDrillTitle').innerText = `${idx + 1}/${currentPlan.length}: ${drill.name}`;
-    secondsLeft = drill.duration * 60;
-    updateTimerDisplay();
-}
+    <div class="container">
 
-function updateTimerDisplay() {
-    let m = Math.floor(secondsLeft / 60);
-    let s = secondsLeft % 60;
-    document.getElementById('timeRemaining').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-}
+        <!-- TAB 1: SESSION PLANNER -->
+        <div id="planner" class="tab-content active">
+            <div class="card no-print">
+                <h2>Create Training Session Plan</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="session-date">Session Date</label>
+                        <input type="date" id="session-date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="kids-count">Kids Attending (10-20)</label>
+                        <input type="number" id="kids-count" class="form-control" min="8" max="25" value="14">
+                    </div>
+                    <div class="form-group">
+                        <label for="session-duration">Total Duration (Mins)</label>
+                        <select id="session-duration" class="form-control">
+                            <option value="45">45 Minutes (Recommended U6)</option>
+                            <option value="60">60 Minutes</option>
+                            <option value="30">30 Minutes (Short Session)</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-primary" onclick="generateAutoPlan()">Auto-Generate Plan</button>
+                    <button class="btn btn-secondary" onclick="openManualBuilder()">Manual Plan Build</button>
+                </div>
+            </div>
 
-function toggleTimer() {
-    if (isTimerRunning) {
-        clearInterval(timerInterval);
-        document.getElementById('startBtn').innerText = 'Start';
-    } else {
-        timerInterval = setInterval(() => {
-            if (secondsLeft > 0) {
-                secondsLeft--;
-                updateTimerDisplay();
-            } else {
-                clearInterval(timerInterval);
-                alert(`Time up for ${currentPlan[activeDrillIdx].name}! Moving to next activity.`);
-                nextDrill();
+            <!-- Active Session Plan Preview -->
+            <div id="active-plan-card" class="card" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:8px; margin-bottom:15px;">
+                    <h2 style="border:none; margin:0;" id="plan-title">Session Plan</h2>
+                    <div class="no-print" style="display:flex; gap:8px;">
+                        <button class="btn btn-success btn-sm" onclick="saveSession('draft')">Save Draft to Calendar</button>
+                        <button class="btn btn-primary btn-sm" onclick="startLiveSession()">Run Session Now</button>
+                        <button class="btn btn-secondary btn-sm" onclick="window.print()">Export / Print PDF</button>
+                    </div>
+                </div>
+
+                <div id="plan-metadata" style="margin-bottom: 15px; font-weight: 500; color: #555;"></div>
+
+                <div id="drill-list-container">
+                    <!-- Dynamic Drills List Rendered Here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: LIVE TIMER -->
+        <div id="timer" class="tab-content">
+            <div class="timer-display">
+                <h3 id="timer-drill-title">No Active Session</h3>
+                <p id="timer-drill-desc" style="color:#eee; margin-top:5px;">Select "Run Session Now" from the planner to start.</p>
+                <div class="timer-clock" id="timer-clock">00:00</div>
+                <div class="timer-controls">
+                    <button class="btn btn-primary" onclick="adjustTime(-60)">-1 Min</button>
+                    <button class="btn btn-success" id="timer-start-btn" onclick="toggleTimer()">Start</button>
+                    <button class="btn btn-primary" onclick="adjustTime(60)">+1 Min</button>
+                    <button class="btn btn-secondary" onclick="nextDrill()">Next Drill &raquo;</button>
+                </div>
+            </div>
+
+            <div class="card" id="timer-drill-details">
+                <h2>Current Drill Setup & Guidance</h2>
+                <div id="timer-drill-body">Select a plan to begin execution.</div>
+            </div>
+        </div>
+
+        <!-- TAB 3: CALENDAR & HISTORICAL RECORDS -->
+        <div id="calendar" class="tab-content">
+            <div class="card">
+                <h2>Session History & Draft Calendar</h2>
+                <div id="calendar-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <button class="btn btn-secondary btn-sm" onclick="changeMonth(-1)">&laquo; Prev</button>
+                    <h3 id="calendar-month-year"></h3>
+                    <button class="btn btn-secondary btn-sm" onclick="changeMonth(1)">Next &raquo;</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid"></div>
+            </div>
+
+            <!-- Historical Modal / Details view -->
+            <div id="history-detail-card" class="card" style="display:none;">
+                <h2>Session Record Details</h2>
+                <div id="history-details-content"></div>
+                <div class="form-group" style="margin-top:15px;">
+                    <label>Coach Notes & Attendance Logs</label>
+                    <textarea id="history-notes" rows="3" class="form-control" placeholder="Add notes on skill progress, turnouts, energy level..."></textarea>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-primary" onclick="saveSessionNotes()">Save Notes</button>
+                    <button class="btn btn-success" onclick="repeatSession()">Run This Session Again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: REPOSITORY -->
+        <div id="repository" class="tab-content">
+            <div class="card">
+                <h2>Available Equipment Constraints</h2>
+                <ul id="equipment-list" style="list-style: square; padding-left: 20px; margin-bottom: 15px;">
+                    <li>13x Footballs</li>
+                    <li>20+ Beanbags</li>
+                    <li>Team Bibs</li>
+                    <li>Agility Poles</li>
+                    <li>Hula Hoops (Can tape to poles for target grids)</li>
+                    <li>Small Marker Cones</li>
+                </ul>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="new-equip-input" class="form-control" placeholder="Add new equipment item...">
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary" onclick="addEquipment()">Add Equipment</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Drill & Activity Bank</h2>
+                <button class="btn btn-primary btn-sm" style="margin-bottom:15px;" onclick="openNewDrillModal()">+ Add New Custom Drill</button>
+                <div id="drill-bank-container"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Default Equipment
+        let equipment = ["13 Footballs", "20+ Beanbags", "Team Bibs", "Agility Poles", "Hula Hoops", "Small Marker Cones"];
+
+        // Drill Bank with SVG Layout Generators
+        let drillBank = [
+            {
+                id: 'd1', category: 'Warm Up', name: 'Animal Adventure & Free Circle', duration: 8,
+                explainer: 'Kids pick a ball. Stationing in space, coaches call out animals: Kangaroo (hop with ball), Cheetah (run & stop), Snake (roll ball on ground), Flamingo (balance on 1 leg). Perform throw-clap-catch & thigh solo.',
+                diagramType: 'circle'
+            },
+            {
+                id: 'd2', category: 'Warm Up', name: 'Basic Skills Square', duration: 8,
+                explainer: 'Set square of cones. Kids move inside grid performing bounce, high throw & catch, ground pick-up. Coaches walk around trying to softly "punch" ball away to teach grip.',
+                diagramType: 'square'
+            },
+            {
+                id: 'd3', category: 'Fun Game', name: 'Sharks and Fish (Tag)', duration: 6,
+                explainer: 'Kids put bib in back of shorts (fish tail). 3 Sharks try to pull tails out. Fish who lose tail become sharks. Focus on agility and evasive running.',
+                diagramType: 'square_tag'
+            },
+            {
+                id: 'd4', category: 'Fun Game', name: 'Cone Relay & Obstacle Hop', duration: 6,
+                explainer: 'Teams line up. Hop over marker cones, weave through poles, pick up beanbag or ball with toe tap, return to line and tag next player.',
+                diagramType: 'relay'
+            },
+            {
+                id: 'd5', category: 'Fun Game', name: 'Rob The Nest', duration: 7,
+                explainer: 'Central hoop filled with balls/beanbags. 4 teams in corners. On whistle, 1 player from each line runs to center, dribbles/carries 1 item back to corner nest. Repeat until nest empty.',
+                diagramType: 'nest'
+            },
+            {
+                id: 'd6', category: 'Skill Game', name: 'Clean Your Garden (Bombsite)', duration: 8,
+                explainer: 'Split grid with DMZ cone line. Each team gets 6 balls. Goal is to kick/handpass balls out of your zone into opposite zone. Team with fewest balls when time expires wins.',
+                diagramType: 'split_field'
+            },
+            {
+                id: 'd7', category: 'Skill Game', name: 'Hoop & Pole Target Shooting', duration: 8,
+                explainer: 'Hula hoops taped between poles. Kids kick or handpass through hoops from markers set 3m and 5m away into coach goalies.',
+                diagramType: 'target'
+            },
+            {
+                id: 'd8', category: 'Skill Game', name: 'Gates and Go', duration: 7,
+                explainer: 'Set up 8 small cone gates. Kids kick ball through any gate, sprint through, retrieve ball, find new gate. Challenge: "How many gates in 60 secs?"',
+                diagramType: 'scatter_gates'
+            },
+            {
+                id: 'd9', category: 'Match', name: 'Small-Sided Match (3v3 / 4v4)', duration: 10,
+                explainer: 'Multiple small pitches using marker cone goals. High touch count. Encourage bounce/solo rule or 3-step rule, but keep play flowing!',
+                diagramType: 'match'
             }
-        }, 1000);
-        document.getElementById('startBtn').innerText = 'Pause';
-    }
-    isTimerRunning = !isTimerRunning;
-}
+        ];
 
-function nextDrill() {
-    clearInterval(timerInterval);
-    isTimerRunning = false;
-    document.getElementById('startBtn').innerText = 'Start';
-    if (activeDrillIdx < currentPlan.length - 1) {
-        loadDrillToTimer(activeDrillIdx + 1);
-    } else {
-        alert("Session Complete! Great job Raheens coaches!");
-    }
-}
+        // Global State
+        let currentPlan = [];
+        let savedSessions = {}; // Keyed by YYYY-MM-DD
+        let activeTimerIndex = 0;
+        let timerInterval = null;
+        let timerSecondsRemaining = 0;
+        let isTimerRunning = false;
+        let currentCalDate = new Date();
 
-function getDiagramSVG(type) {
-    if (!type) return '';
-    if (type === 'dmz') {
-        return `<svg class="svg-diagram" viewBox="0 0 200 100">
-            <rect x="10" y="10" width="180" height="80" fill="none" stroke="#003399" stroke-width="2"/>
-            <line x1="80" y1="10" x2="80" y2="90" stroke="#d9534f" stroke-dasharray="4"/>
-            <line x1="120" y1="10" x2="120" y2="90" stroke="#d9534f" stroke-dasharray="4"/>
-            <text x="90" y="55" font-size="10" fill="#d9534f" font-weight="bold">DMZ</text>
-            <circle cx="40" cy="50" r="5" fill="#003399"/><circle cx="160" cy="50" r="5" fill="#ffcc00"/>
-        </svg>`;
-    }
-    if (type === 'target') {
-        return `<svg class="svg-diagram" viewBox="0 0 200 100">
-            <line x1="20" y1="20" x2="20" y2="80" stroke="#333" stroke-width="4"/>
-            <circle cx="20" cy="50" r="15" fill="none" stroke="#ffcc00" stroke-width="4"/>
-            <circle cx="100" cy="50" r="4" fill="#003399"/>
-            <path d="M 100 50 Q 60 20 22 48" stroke="#003399" fill="none" stroke-dasharray="2"/>
-        </svg>`;
-    }
-    return `<svg class="svg-diagram" viewBox="0 0 200 100">
-        <rect x="20" y="10" width="160" height="80" fill="none" stroke="#003399" stroke-dasharray="2"/>
-        <circle cx="50" cy="30" r="4" fill="#ffcc00"/><circle cx="150" cy="70" r="4" fill="#ffcc00"/>
-        <text x="55" y="55" font-size="11" fill="#003399" font-weight="bold">Interactive Grid Zone</text>
-    </svg>`;
-}
+        // Initialization
+        window.onload = function() {
+            document.getElementById('session-date').valueAsDate = new Date();
+            renderDrillBank();
+            renderCalendar();
+        };
 
-function sharePlan() {
-    let summary = currentPlan.map((p, i) => `${i+1}. ${p.name} (${p.duration}m)`).join('\n');
-    let text = `Raheens U6 GAA Session Plan:\n\n${summary}`;
-    if (navigator.share) {
-        navigator.share({ title: 'Raheens U6 Session Plan', text: text });
-    } else {
-        navigator.clipboard.writeText(text);
-        alert("Raheens U6 session plan copied to clipboard!");
-    }
-}
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
 
-function renderLibrary() {
-    let html = '';
-    drillLibrary.forEach(d => {
-        html += `<div class="card">
-            <strong>${d.name}</strong> <span class="equipment-tag">${d.category}</span>
-            <p style="font-size:0.85rem; margin: 6px 0;">${d.desc}</p>
-            <small><strong>Equip:</strong> ${d.equipment}</small>
-        </div>`;
-    });
-    document.getElementById('libraryList').innerHTML = html;
-}
+        // SVG Pitch Diagram Generators
+        function getSVGDiagram(type) {
+            const svgHeader = `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="120" fill="#2e7d32" rx="4"/>
+                <rect x="5" y="5" width="190" height="110" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="4"/>`;
+            const svgFooter = `</svg>`;
 
-function addDrill() {
-    let name = document.getElementById('newTitle').value;
-    let category = document.getElementById('newCategory').value;
-    let desc = document.getElementById('newExplainer').value;
-    let equipment = document.getElementById('newEquip').value;
+            let elements = '';
+            if (type === 'circle') {
+                elements = `
+                    <circle cx="100" cy="60" r="35" stroke="#FFD700" stroke-width="2" fill="none"/>
+                    <circle cx="100" cy="25" r="4" fill="#003399"/><circle cx="135" cy="60" r="4" fill="#003399"/>
+                    <circle cx="100" cy="95" r="4" fill="#003399"/><circle cx="65" cy="60" r="4" fill="#003399"/>
+                    <circle cx="100" cy="60" r="5" fill="#FFD700"/>
+                `;
+            } else if (type === 'square' || type === 'square_tag') {
+                elements = `
+                    <rect x="40" y="20" width="120" height="80" stroke="#FFD700" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="30" r="3" fill="white"/><circle cx="150" cy="30" r="3" fill="white"/>
+                    <circle cx="50" cy="90" r="3" fill="white"/><circle cx="150" cy="90" r="3" fill="white"/>
+                    <circle cx="90" cy="50" r="4" fill="red"/><circle cx="110" cy="70" r="4" fill="#003399"/>
+                `;
+            } else if (type === 'relay') {
+                elements = `
+                    <line x1="20" y1="30" x2="180" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                    <line x1="20" y1="90" x2="180" y2="90" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                    <circle cx="30" cy="30" r="4" fill="#003399"/><circle cx="30" cy="90" r="4" fill="#003399"/>
+                    <polygon points="70,25 75,35 65,35" fill="#FFD700"/><polygon points="70,85 75,95 65,95" fill="#FFD700"/>
+                    <line x1="110" y1="20" x2="110" y2="40" stroke="white" stroke-width="3"/>
+                    <circle cx="170" cy="30" r="5" fill="red"/><circle cx="170" cy="90" r="5" fill="red"/>
+                `;
+            } else if (type === 'nest') {
+                elements = `
+                    <circle cx="100" cy="60" r="15" fill="#FFD700" opacity="0.4"/>
+                    <circle cx="97" cy="58" r="3" fill="white"/><circle cx="103" cy="62" r="3" fill="white"/>
+                    <rect x="20" y="15" width="20" height="20" stroke="#003399" fill="none"/>
+                    <rect x="160" y="15" width="20" height="20" stroke="#003399" fill="none"/>
+                    <rect x="20" y="85" width="20" height="20" stroke="#003399" fill="none"/>
+                    <rect x="160" y="85" width="20" height="20" stroke="#003399" fill="none"/>
+                `;
+            } else if (type === 'split_field') {
+                elements = `
+                    <line x1="100" y1="5" x2="100" y2="115" stroke="red" stroke-width="3" stroke-dasharray="3"/>
+                    <circle cx="50" cy="40" r="4" fill="#003399"/><circle cx="50" cy="80" r="4" fill="#003399"/>
+                    <circle cx="150" cy="40" r="4" fill="#FFD700"/><circle cx="150" cy="80" r="4" fill="#FFD700"/>
+                    <circle cx="80" cy="60" r="3" fill="white"/><circle cx="120" cy="60" r="3" fill="white"/>
+                `;
+            } else if (type === 'target') {
+                elements = `
+                    <circle cx="170" cy="40" r="8" stroke="yellow" stroke-width="3" fill="none"/>
+                    <circle cx="170" cy="80" r="8" stroke="yellow" stroke-width="3" fill="none"/>
+                    <circle cx="40" cy="40" r="4" fill="#003399"/><circle cx="40" cy="80" r="4" fill="#003399"/>
+                    <line x1="45" y1="40" x2="160" y2="40" stroke="white" stroke-dasharray="2"/>
+                `;
+            } else if (type === 'match') {
+                elements = `
+                    <rect x="5" y="35" width="10" height="50" stroke="white" fill="none"/>
+                    <rect x="185" y="35" width="10" height="50" stroke="white" fill="none"/>
+                    <line x1="100" y1="5" x2="100" y2="115" stroke="white"/>
+                    <circle cx="60" cy="40" r="4" fill="#003399"/><circle cx="140" cy="80" r="4" fill="#FFD700"/>
+                    <circle cx="100" cy="60" r="3" fill="white"/>
+                `;
+            } else {
+                elements = `<text x="100" y="65" fill="white" font-size="12" text-anchor="middle">Pitch Diagram</text>`;
+            }
 
-    if (!name) return alert('Enter a drill name');
+            return svgHeader + elements + svgFooter;
+        }
 
-    drillLibrary.push({ id: Date.now(), name, category, desc, equipment, duration: 5, diagram: 'grid' });
-    localStorage.setItem('gaa_drills_raheens', JSON.stringify(drillLibrary));
-    alert('Drill added to Raheens library!');
-    document.getElementById('newTitle').value = '';
-    document.getElementById('newExplainer').value = '';
-    renderLibrary();
-}
+        // Automatic Plan Generation
+        function generateAutoPlan() {
+            const kids = document.getElementById('kids-count').value;
+            const targetDuration = parseInt(document.getElementById('session-duration').value);
 
-function saveSessionLog() {
-    let logs = JSON.parse(localStorage.getItem('gaa_history_raheens')) || [];
-    let log = {
-        date: new Date().toLocaleDateString(),
-        attendance: document.getElementById('finalAttendance').value,
-        notes: document.getElementById('sessionNotes').value,
-        plan: currentPlan.map(p => p.name)
-    };
-    logs.push(log);
-    localStorage.setItem('gaa_history_raheens')) || [];
-    localStorage.setItem('gaa_history_raheens', JSON.stringify(logs));
-    alert('Raheens session logged successfully!');
-}
+            // Filter exercises
+            const warmups = drillBank.filter(d => d.category === 'Warm Up');
+            const funGames = drillBank.filter(d => d.category === 'Fun Game');
+            const skillGames = drillBank.filter(d => d.category === 'Skill Game');
+            const matches = drillBank.filter(d => d.category === 'Match');
 
-function renderHistory() {
-    let logs = JSON.parse(localStorage.getItem('gaa_history_raheens')) || [];
-    if (logs.length === 0) {
-        document.getElementById('historyList').innerText = 'No saved sessions yet.';
-        return;
-    }
-    let html = '';
-    logs.reverse().forEach(l => {
-        html += `<div class="card">
-            <strong>Date: ${l.date}</strong> | Attendance: ${l.attendance} kids
-            <p style="margin:6px 0;"><strong>Notes:</strong> ${l.notes || 'None'}</p>
-            <small><strong>Activities:</strong> ${l.plan.join(', ')}</small>
-        </div>`;
-    });
-    document.getElementById('historyList').innerHTML = html;
-}
-</script>
+            let plan = [];
+            
+            // 1. Warm up (8m)
+            plan.push({...warmups[Math.floor(Math.random() * warmups.length)], duration: 8});
+            
+            // 2. Fun Game (7m)
+            plan.push({...funGames[Math.floor(Math.random() * funGames.length)], duration: 7});
+            
+            // 3. Mandatory Water Break 1 (2m)
+            plan.push({ name: 'Water Break 1', duration: 2, category: 'Break', explainer: 'Short drink break. Rehydrate and group kids.' });
+            
+            // 4. Skill Game 1 (8m)
+            plan.push({...skillGames[Math.floor(Math.random() * skillGames.length)], duration: 8});
+            
+            // 5. Mandatory Water Break 2 (2m)
+            plan.push({ name: 'Water Break 2', duration: 2, category: 'Break', explainer: 'Short drink break. Assign teams for match.' });
+
+            // Adjust remaining time for final games & match
+            let currentTotal = plan.reduce((acc, d) => acc + d.duration, 0);
+            let remaining = targetDuration - currentTotal;
+
+            if (remaining >= 15) {
+                // Add another skill or fun game
+                plan.push({...skillGames[(Math.floor(Math.random() * skillGames.length) + 1) % skillGames.length], duration: 7});
+                remaining -= 7;
+            }
+
+            // Always end in a Match
+            plan.push({...matches[0], duration: Math.max(8, remaining)});
+
+            currentPlan = plan;
+            renderActivePlan();
+        }
+
+        function renderActivePlan() {
+            const container = document.getElementById('drill-list-container');
+            const card = document.getElementById('active-plan-card');
+            const meta = document.getElementById('plan-metadata');
+            const dateVal = document.getElementById('session-date').value;
+            const kids = document.getElementById('kids-count').value;
+
+            card.style.display = 'block';
+            const totalMin = currentPlan.reduce((a, b) => a + b.duration, 0);
+
+            meta.innerHTML = `<strong>Date:</strong> ${dateVal} | <strong>Group:</strong> U6 Boys (${kids} kids) | <strong>Duration:</strong> ${totalMin} Mins`;
+
+            container.innerHTML = '';
+            currentPlan.forEach((drill, idx) => {
+                let extraClass = drill.category === 'Break' ? 'water-break' : (drill.category === 'Match' ? 'match' : '');
+                
+                let html = `
+                    <div class="drill-item ${extraClass}">
+                        <div class="drill-info">
+                            <h3 style="color:var(--raheens-blue);">${idx + 1}. ${drill.name} <span style="font-size:0.9rem; color:#666;">(${drill.duration} mins)</span></h3>
+                            <p style="margin-top:5px; font-size:0.95rem;">${drill.explainer}</p>
+                        </div>
+                        ${drill.diagramType ? `<div class="drill-diagram">${getSVGDiagram(drill.diagramType)}</div>` : ''}
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        // Live Timer Functions
+        function startLiveSession() {
+            if (currentPlan.length === 0) return alert('Please generate a plan first!');
+            showTab('timer');
+            activeTimerIndex = 0;
+            loadDrillToTimer(activeTimerIndex);
+        }
+
+        function loadDrillToTimer(index) {
+            if (index >= currentPlan.length) {
+                document.getElementById('timer-drill-title').innerText = "Session Complete!";
+                document.getElementById('timer-drill-desc').innerText = "Great job coach! Log your notes on the calendar tab.";
+                document.getElementById('timer-clock').innerText = "00:00";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            let drill = currentPlan[index];
+            document.getElementById('timer-drill-title').innerText = `${index + 1}. ${drill.name}`;
+            document.getElementById('timer-drill-desc').innerText = `Category: ${drill.category} | Allocated Time: ${drill.duration} mins`;
+            
+            document.getElementById('timer-drill-body').innerHTML = `
+                <p style="font-size:1.1rem; margin-bottom:15px;">${drill.explainer}</p>
+                ${drill.diagramType ? `<div style="max-width:300px; margin:0 auto; background:var(--pitch-green); padding:10px; border-radius:8px;">${getSVGDiagram(drill.diagramType)}</div>` : ''}
+            `;
+
+            timerSecondsRemaining = drill.duration * 60;
+            updateClockDisplay();
+        }
+
+        function updateClockDisplay() {
+            let m = Math.floor(timerSecondsRemaining / 60);
+            let s = timerSecondsRemaining % 60;
+            document.getElementById('timer-clock').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function toggleTimer() {
+            let btn = document.getElementById('timer-start-btn');
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                btn.innerText = 'Start';
+                btn.className = 'btn btn-success';
+            } else {
+                isTimerRunning = true;
+                btn.innerText = 'Pause';
+                btn.className = 'btn btn-danger';
+                timerInterval = setInterval(() => {
+                    if (timerSecondsRemaining > 0) {
+                        timerSecondsRemaining--;
+                        updateClockDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        alert(`Time up for ${currentPlan[activeTimerIndex].name}! Moving to next exercise.`);
+                        nextDrill();
+                    }
+                }, 1000);
+            }
+        }
+
+        function adjustTime(secs) {
+            timerSecondsRemaining = Math.max(0, timerSecondsRemaining + secs);
+            updateClockDisplay();
+        }
+
+        function nextDrill() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            document.getElementById('timer-start-btn').innerText = 'Start';
+            document.getElementById('timer-start-btn').className = 'btn btn-success';
+            activeTimerIndex++;
+            loadDrillToTimer(activeTimerIndex);
+        }
+
+        // Calendar Management
+        function saveSession(status) {
+            let dateKey = document.getElementById('session-date').value;
+            if (!dateKey) return alert('Please select a valid date');
+
+            savedSessions[dateKey] = {
+                date: dateKey,
+                kids: document.getElementById('kids-count').value,
+                plan: [...currentPlan],
+                status: status,
+                notes: ''
+            };
+
+            alert(`Session successfully saved as ${status} for ${dateKey}`);
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            let grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+
+            const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            daysOfWeek.forEach(d => {
+                grid.innerHTML += `<div class="calendar-day-head">${d}</div>`;
+            });
+
+            let year = currentCalDate.getFullYear();
+            let month = currentCalDate.getMonth();
+            
+            document.getElementById('calendar-month-year').innerText = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            let firstDay = new Date(year, month, 1).getDay();
+            let totalDays = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                grid.innerHTML += `<div class="calendar-day" style="background:#f9f9f9;"></div>`;
+            }
+
+            for (let d = 1; d <= totalDays; d++) {
+                let dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
+                let session = savedSessions[dateStr];
+                let hasSession = session ? 'has-session' : '';
+                
+                let cellHtml = `
+                    <div class="calendar-day ${hasSession}" onclick="viewCalendarDate('${dateStr}')">
+                        <div class="day-num">${d}</div>
+                        ${session ? `<span class="badge">${session.status === 'draft' ? '[Draft]' : '[Done]'} U6 Plan</span>` : ''}
+                    </div>
+                `;
+                grid.innerHTML += cellHtml;
+            }
+        }
+
+        function changeMonth(offset) {
+            currentCalDate.setMonth(currentCalDate.getMonth() + offset);
+            renderCalendar();
+        }
+
+        function viewCalendarDate(dateStr) {
+            let session = savedSessions[dateStr];
+            if (!session) return;
+
+            let card = document.getElementById('history-detail-card');
+            let content = document.getElementById('history-details-content');
+            card.style.display = 'block';
+
+            content.innerHTML = `
+                <h3>Date: ${session.date} | Attendance: ${session.kids} Kids</h3>
+                <p>Status: <strong>${session.status.toUpperCase()}</strong></p>
+                <div style="margin-top:10px;">
+                    ${session.plan.map((d, i) => `<div>${i+1}. ${d.name} (${d.duration} mins)</div>`).join('')}
+                </div>
+            `;
+            document.getElementById('history-notes').value = session.notes || '';
+            card.dataset.selectedDate = dateStr;
+        }
+
+        function saveSessionNotes() {
+            let dateStr = document.getElementById('history-detail-card').dataset.selectedDate;
+            if (dateStr && savedSessions[dateStr]) {
+                savedSessions[dateStr].notes = document.getElementById('history-notes').value;
+                alert('Coach notes updated!');
+            }
+        }
+
+        function repeatSession() {
+            let dateStr = document.getElementById('history-detail-card').dataset.selectedDate;
+            if (dateStr && savedSessions[dateStr]) {
+                currentPlan = [...savedSessions[dateStr].plan];
+                showTab('planner');
+                renderActivePlan();
+            }
+        }
+
+        // Drill & Equipment Bank Handlers
+        function renderDrillBank() {
+            let container = document.getElementById('drill-bank-container');
+            container.innerHTML = '';
+            drillBank.forEach(drill => {
+                container.innerHTML += `
+                    <div style="padding:10px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>${drill.name}</strong> <span style="font-size:0.8rem; background:#eee; padding:2px 6px; border-radius:3px;">${drill.category}</span>
+                            <p style="font-size:0.9rem; color:#555;">${drill.explainer}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addEquipment() {
+            let val = document.getElementById('new-equip-input').value;
+            if (val) {
+                equipment.push(val);
+                let list = document.getElementById('equipment-list');
+                list.innerHTML += `<li>${val}</li>`;
+                document.getElementById('new-equip-input').value = '';
+            }
+        }
+    </script>
 </body>
 </html>
